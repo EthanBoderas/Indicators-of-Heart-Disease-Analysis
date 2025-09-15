@@ -7,4 +7,4 @@ My primary goal in working with this dataset is to explore potential correlation
 Ultimately, this analysis could provide insights not only into heart attack risks but also into broader public health trends, highlighting areas where preventative measures, awareness campaigns, or health interventions might be most beneficial.
 
 ## Link to Dataset
- Link: [Indicators-of-Heart-Disease](https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease)
+ Link to CSV: [Indicators-of-Heart-Disease](heart_2022_no_nans_cut.csv)
