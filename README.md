@@ -5,3 +5,6 @@ I have chosen to analyze a dataset containing health records of U.S. citizens, w
 My primary goal in working with this dataset is to explore potential correlations between various health and lifestyle factors and the likelihood of experiencing a heart attack. By identifying these relationships, I hope to better understand which risk factors may be most strongly associated with cardiovascular events. Additionally, I plan to use this dataset to gain a broader perspective on the overall health status of U.S. citizens, including patterns in lifestyle habits, average BMI distributions, and other general health metrics.
 
 Ultimately, this analysis could provide insights not only into heart attack risks but also into broader public health trends, highlighting areas where preventative measures, awareness campaigns, or health interventions might be most beneficial.
+
+## Link to Dataset
+Link: https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease
