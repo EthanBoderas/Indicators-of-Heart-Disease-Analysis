@@ -7,4 +7,7 @@ My primary goal in working with this dataset is to explore potential correlation
 Ultimately, this analysis could provide insights not only into heart attack risks but also into broader public health trends, highlighting areas where preventative measures, awareness campaigns, or health interventions might be most beneficial.
 
 ## Link to Dataset
- Link to CSV: [heart_2022_no_nans_cut.csv](heart_2022_no_nans_cut.csv)
+ CSV Link: [heart_2022_no_nans_cut.csv](heart_2022_no_nans_cut.csv)
+
+## Link to R Markdown
+R Markdown Link: [CreditCardAnalysis.Rmd](CreditCardAnalysis.Rmd)
