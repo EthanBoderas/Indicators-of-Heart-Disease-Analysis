@@ -1,0 +1,83 @@
+---
+title: "CreditCardAnalysis"
+author: "EB"
+output: html_document
+date: "2025-08-31"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Dataset Source
+
+[Link to data source](<https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers?resource=download>)
+
+# Overall Question
+
+My primary goal for this assignment was to identify potential factors that influence a cardholder's credit limit. 
+
+
+## Question 1
+
+Upon viewing this data, my initial hypothesis was that, on average, the more dependents a cardholder has, the higher their credit limit is.
+
+Below, I have created two histograms that plot the count of cardholders in different credit limit ranges based on the number of dependents they have. This first histogram only graphs those who have one dependent. Examining the graph, we can see that the majority of cardholders have a credit limit below $6,000. It also shows that, for the most part, there is a decline in the number of cardholders as the credit limit increases, until it reaches $35,000.
+
+```{r}
+data = read.csv("BankChurners.csv", header = TRUE)
+data = data[ , -c(22, 23)]
+hist(data$Credit_Limit[data$Dependent_count == 1], breaks = 15, main = "Credit Limit For 1 Dependent", xlab = "Credit Limit")
+```
+
+The second histogram graphs those who have 5 dependents. Similarly, this graph follows the same pattern as the previous one however there is a greater count of card holders in the $35,000 range.  
+
+```{r}
+hist(data$Credit_Limit[data$Dependent_count == 5], breaks = 15, main = "Credit Limit For 5 Dependent", xlab = "Credit Limit", ylim = c(0, 140))
+```
+
+## Question 2
+
+To test my hypothesis, I perform an aggregate function to find the mean of the credit limit for each dependent count. Analyzing the results we can see that the average credit limit increases with the number of the dependents a cardholder has. These results can be an indication that the hypothesis is correct.
+
+```{r}
+credit_avg = aggregate(data$Credit_Limit ~ data$Dependent_count, FUN = mean)
+credit_avg
+```
+
+I plotted the means over a line graph to better visualize the relationship between the number of dependents and the credit limit on the account. Here, we can see that the average credit limit increases as the number of dependents rises from zero to four, followed by a slight drop to five dependents.
+
+```{r}
+plot(credit_avg, type = "l", main = "Avrage Credit Limit Over Dependent Count", xlab = "Dependent Count", ylab = "Avrage Credit Limit")
+```
+
+
+## Question 3
+
+To further test this theory, I perform a correlation analysis to detect the strength of association between the dependent count and credit limit. This association is measured between the numbers -1 and 1, with -1 indicating a strong negative relationship, 0 indicating a weak or no relationship, and 1 indicating a strong positive relationship. In this case, we received a score of 0.068 as the output, indicating a weak positive relationship between the number of dependents and the credit limit. Considering that the score seems to contradict the previous results, this may indicate that there is no relationship between dependent count and credit limit, and that the previous data is being misrepresented. Another possibility is that an error was made along the way, leading to the contradiction.
+
+```{r}
+cor.test(data$Dependent_count, data$Credit_Limit)
+```
+
+## Question 4
+
+Another column I would like to examine is the age column to see if it has any possible effect on the credit limit. First, I would like to graph the age of the cardholders to visualize the distribution better.
+
+Analyzing the graph, we can see that a majority of the cardholders are between the ages of 40 and 50. Another interesting fact is that none of the cardholders are below the age of 25 or above 70. It may be that the data provided excluded these categories of clients.
+```{r}
+hist(data$Customer_Age, main = "Age of Credit Card Holders", breaks = 15, xlab = "Age", ylim = c(0, 2500))
+```
+
+## Question 5
+
+After reviewing the histogram, I chose to divide the data set into two groups based on whether the cardholder is younger or older than 45 and used the t-test to compare the two groups. In this case, the Null hypothesis is that the mean credit limit is the same for both groups, and the alternative hypothesis is that the mean credit limit is different between these age groups. Seeing as the p-value is 0.2441, this means we do not reject the null hypothesis, as the value is much larger than the common threshold of 0.05.
+```{r}
+data$Age_Group = ifelse(data$Customer_Age < 45, "Under 45", "Over 45")
+t.test(Credit_Limit ~ Age_Group, data = data)
+```
+
+```{r}
+boxplot(Credit_Limit ~ Age_Group, data = data, main = "Credit Limit by Age Group", xlab = "Age Group", ylab = "Credit Limit", col = c("skyblue", "salmon"))
+```
+
