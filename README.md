@@ -10,4 +10,4 @@ Ultimately, this analysis could provide insights not only into heart attack risk
  CSV Link: [heart_2022_no_nans_cut.csv](heart_2022_no_nans_cut.csv)
 
 ## Link to R Markdown
-R Markdown Link: [CreditCardAnalysis.Rmd](CreditCardAnalysis.Rmd)
+R Markdown Link: [CreditCardAnalysis.Rmd](CreditCardAnalysis.html)
